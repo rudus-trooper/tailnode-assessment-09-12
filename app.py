@@ -13,7 +13,26 @@ from dashboard.utils import (
 # load dataset
 @st.cache_data
 def load_data():
-    return pd.read_csv("crop_data.csv")
+    df = pd.read_csv("crop_data.csv")
+    
+    # Basic filtering checks
+    
+    # strip whitespace from column names 
+    df.columns = df.columns.str.strip()
+
+    # normalize categorical fields 
+    catCols = ["State", "District", "Crop", "Season"]
+    for c in catCols:
+        if c in df.columns:
+            df[c] = df[c].astype(str).str.strip().str.title()
+    
+    # convert numeric fields
+    numCols = ["Area", "Production", "Yield"]
+    for c in numCols:
+        if c in df.columns:
+            df[c] = pd.to_numeric(df[c], errors="coerce")
+    
+    return df
 
 def intro():
     st.sidebar.success("Select a dashboard above.")
