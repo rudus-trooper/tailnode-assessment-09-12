@@ -31,3 +31,10 @@ To run tests, run the following command, this will start running test cases
   pytest -q
 ```
 
+
+## Screenshots
+
+![App Screenshot 1](./screenshots/1.png)
+![App Screenshot 2](./screenshots/2.png)
+![App Screenshot 3](./screenshots/3.png)
+![App Screenshot 4](./screenshots/4.png)
